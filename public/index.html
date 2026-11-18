@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wesley University Portal</title>
+
+<style>
+:root {
+  --blue: #073b78;
+  --dark: #052957;
+  --gold: #d5a52b;
+  --light: #f3f6fb;
+  --white: #ffffff;
+  --text: #263445;
+  --muted: #718096;
+  --border: #e3e9f1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: var(--light);
+  color: var(--text);
+}
+
+.hidden {
+  display: none !important;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+/* HOMEPAGE */
+
+.home-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #052957, #0b559b);
+  color: white;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 7%;
+  border-bottom: 1px solid rgba(255,255,255,.2);
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo span {
+  color: var(--gold);
+}
+
+.navbar button,
+.primary-btn {
+  background: var(--gold);
+  color: #14263d;
+  padding: 12px 23px;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.hero {
+  text-align: center;
+  padding: 85px 20px 65px;
+  max-width: 950px;
+  margin: auto;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 18px;
+}
+
+.hero h1 span {
+  color: var(--gold);
+}
+
+.hero p {
+  line-height: 1.8;
+  color: #e0eafa;
+  max-width: 720px;
+  margin: auto;
+}
+
+.hero .primary-btn {
+  margin-top: 28px;
+}
+
+.home-info {
+  background: white;
+  color: var(--text);
+  padding: 45px 7%;
+  text-align: center;
+}
+
+.home-info h2 {
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.info-card {
+  background: var(--light);
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.info-card h3 {
+  color: var(--blue);
+  margin-bottom: 10px;
+}
+
+/* LOGIN */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  background: linear-gradient(135deg,#052957,#0b559b);
+}
+
+.login-card {
+  background: white;
+  width: 100%;
+  max-width: 470px;
+  padding: 35px;
+  border-radius: 13px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.2);
+}
+
+.login-card h2 {
+  color: var(--blue);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.login-card .subtitle {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.login-card label {
+  display: block;
+  margin: 16px 0 7px;
+  font-weight: bold;
+}
+
+.login-card input,
+.login-card select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+}
+
+.login-card input:focus,
+.login-card select:focus {
+  border-color: var(--blue);
+}
+
+.login-card .primary-btn {
+  width: 100%;
+  margin-top: 22px;
+}
+
+.back-home {
+  display: block;
+  margin: 20px auto 0;
+  color: var(--blue);
+  background: transparent;
+}
+
+#errorMessage {
+  color: #c62828;
+  font-size: 14px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* DASHBOARD */
+
+.dashboard-page {
+  min-height: 100vh;
+}
+
+.topbar {
+  background: var(--blue);
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.topbar h2 {
+  font-size: 19px;
+}
+
+.topbar small {
+  color: #dce9f9;
+}
+
+.logout-btn {
+  background: var(--gold);
+  color: #14263d;
+  padding: 10px 16px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.dashboard-layout {
+  display: flex;
+  min-height: calc(100vh - 65px);
+}
+
+.sidebar {
+  width: 255px;
+  flex-shrink: 0;
+  background: white;
+  border-right: 1px solid var(--border);
+  padding: 22px 13px;
+}
+
+.sidebar h3 {
+  color: var(--blue);
+  padding: 10px 12px 18px;
+  font-size: 15px;
+}
+
+.sidebar button {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  margin-bottom: 5px;
+  border-radius: 6px;
+  background: transparent;
+  color: #405168;
+  font-size: 14px;
+}
+
+.sidebar button:hover,
+.sidebar button.active {
+  background: #eaf2fc;
+  color: var(--blue);
+  font-weight: bold;
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0;
+  padding: 28px;
+}
+
+.welcome-section {
+  margin-bottom: 25px;
+}
+
+.welcome-section h1 {
+  color: var(--blue);
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.welcome-section p {
+  color: var(--muted);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(170px,1fr));
+  gap: 18px;
+  margin: 22px 0;
+}
+
+.stat-card {
+  background: white;
+  padding: 22px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 12px rgba(0,0,0,.03);
+}
+
+.stat-card p {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.stat-card h2 {
+  color: var(--blue);
+  font-size: 27px;
+}
+
+.content-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  margin-top: 20px;
+}
+
+.content-card h3 {
+  color: var(--blue);
+  margin-bottom: 17px;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+  gap: 15px;
+}
+
+.quick-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 20px;
+  text-align: left;
+  color: var(--text);
+}
+
+.quick-card:hover {
+  border-color: var(--blue);
+  background: #f5f9ff;
+}
+
+.quick-card strong {
+  display: block;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.quick-card small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.module-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.module-heading h1 {
+  color: var(--blue);
+}
+
+.secondary-btn {
+  padding: 10px 16px;
+  background: #eaf2fc;
+  color: var(--blue);
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.action-btn {
+  background: var(--blue);
+  color: white;
+  padding: 11px 17px;
+  border-radius: 5px;
+  margin-top: 12px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  min-width: 550px;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 13px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.data-table th {
+  color: var(--blue);
+  background: #f3f7fc;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.module-description {
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.form-field {
+  margin: 15px 0;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.notice {
+  padding: 15px;
+  background: #f3f7fc;
+  border-left: 4px solid var(--gold);
+  border-radius: 5px;
+  margin: 12px 0;
+  line-height: 1.6;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* MOBILE */
+
+@media(max-width:750px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 12px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    gap: 7px;
+  }
+
+  .sidebar h3 {
+    display: none;
+  }
+
+  .sidebar button {
+    min-width: max-content;
+    width: auto;
+    margin: 0;
+  }
+
+  .main-content {
+    padding: 18px;
+  }
+
+  .topbar {
+    padding: 14px;
+  }
+
+  .topbar h2 {
+    font-size: 15px;
+  }
+
+  .login-card {
+    padding: 25px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOMEPAGE -->
+
+<section id="homePage" class="home-page">
+
+  <nav class="navbar">
+    <div class="logo">WESLEY <span>UNIVERSITY</span></div>
+    <button id="homeLoginButton">Portal Login</button>
+  </nav>
+
+  <div class="hero">
+    <h1>Welcome to <span>Wesley University</span></h1>
+
+    <p>
+      A centre of academic excellence, character development and innovation.
+      We are committed to providing quality education, developing responsible
+      leaders and preparing students for a successful future.
+    </p>
+
+    <button class="primary-btn" id="heroLoginButton">
+      Access University Portal
+    </button>
+  </div>
+
+  <section class="home-info">
+    <h2>Excellence, Knowledge and Character</h2>
+
+    <p>
+      Wesley University is dedicated to academic achievement,
+      research, leadership and the development of individuals
+      who will make meaningful contributions to society.
+    </p>
+
+    <div class="info-grid">
+
+      <div class="info-card">
+        <h3>Academic Excellence</h3>
+        <p>Quality teaching, learning and research.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Innovation</h3>
+        <p>Preparing students for the opportunities of tomorrow.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Character</h3>
+        <p>Building responsible and disciplined future leaders.</p>
+      </div>
+
+      <div class="info-card">
+        <h3>Community</h3>
+        <p>Creating a supportive university environment.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>© 2026 Wesley University Portal</footer>
+
+</section>
+
+
+<!-- LOGIN PAGE -->
+
+<section id="loginPage" class="login-page hidden">
+
+  <div class="login-card">
+
+    <h2>University Portal Login</h2>
+    <p class="subtitle">Sign in to access your dashboard</p>
+
+    <form id="loginForm">
+
+      <label for="roleSelect">Select Portal</label>
+
+      <select id="roleSelect" required>
+        <option value="">Choose your portal</option>
+        <option value="Student">Student</option>
+        <option value="Parent">Parent</option>
+        <option value="Lecturer">Lecturer</option>
+        <option value="Administrator">Administrator</option>
+      </select>
+
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        required
+      >
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        required
+      >
+
+      <button type="submit" class="primary-btn" id="loginButton">
+        Login to Portal
+      </button>
+
+      <p id="errorMessage"></p>
+
+    </form>
+
+    <button class="back-home" id="backHomeButton">
+      ← Back to Homepage
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- DASHBOARD PAGE -->
+
+<section id="dashboardPage" class="dashboard-page hidden">
+
+  <header class="topbar">
+
+    <div>
+      <h2>WESLEY UNIVERSITY</h2>
+      <small id="portalRole">University Portal</small>
+    </div>
+
+    <div>
+      <span id="topUserName">Welcome</span>
+      <button class="logout-btn" id="logoutButton">Logout</button>
+    </div>
+
+  </header>
+
+  <div class="dashboard-layout">
+
+    <aside class="sidebar">
+      <h3 id="sidebarHeading">DASHBOARD MENU</h3>
+      <div id="sidebarMenu"></div>
+    </aside>
+
+    <main class="main-content">
+
+      <section id="overviewCard">
+
+        <div class="welcome-section">
+          <h1 id="welcomeHeading">Welcome</h1>
+          <p id="welcomeDescription">
+            Welcome to your university dashboard.
+          </p>
+        </div>
+
+        <div class="stats-grid" id="statsGrid"></div>
+
+        <div class="content-card">
+          <h3>Quick Access</h3>
+          <div class="quick-grid" id="quickGrid"></div>
+        </div>
+
+        <div class="content-card">
+          <h3>University Announcements</h3>
+
+          <div class="notice">
+            Welcome to Wesley University. Please check your portal regularly
+            for important academic updates and announcements.
+          </div>
+
+          <div class="notice">
+            Students are encouraged to stay informed about their course
+            registration and academic activities.
+          </div>
+        </div>
+
+      </section>
+
+      <section id="modulePage" class="hidden">
+
+        <div class="module-heading">
+          <h1 id="moduleTitle">Module</h1>
+          <button class="secondary-btn" id="backDashboard">
+            ← Dashboard
+          </button>
+        </div>
+
+        <p class="module-description" id="moduleDescription"></p>
+
+        <div id="moduleContent"></div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</section>
+
+
+<script>
+
+/* PAGE ELEMENTS */
+
+const homePage = document.getElementById("homePage");
+const loginPage = document.getElementById("loginPage");
+const dashboardPage = document.getElementById("dashboardPage");
+
+let selectedRole = "";
+let currentUser = null;
+
+
+/* DASHBOARD MODULES FOR ALL FOUR ROLES */
+
+const roleDetails = {
+
+  Student: {
+
+    description: "Manage your academic activities, courses and university information.",
+
+    stats: [
+      ["Registered Courses", "8"],
+      ["Current GPA", "3.75"],
+      ["Attendance", "92%"],
+      ["Outstanding Fees", "₦0"]
+    ],
+
+    modules: [
+      "My Profile",
+      "Course Registration",
+      "Registered Courses",
+      "Academic Results",
+      "Semester Results",
+      "Class Timetable",
+      "Attendance Records",
+      "School Fees",
+      "Payment History",
+      "Assignments",
+      "Learning Materials",
+      "Academic Calendar",
+      "University Announcements",
+      "Student Support"
+    ]
+
+  },
+
+
+  Parent: {
+
+    description: "Monitor your child's academic activities and university progress.",
+
+    stats: [
+      ["Children Linked", "1"],
+      ["Academic Performance", "Good"],
+      ["Attendance", "92%"],
+      ["Fee Status", "Up to Date"]
+    ],
+
+    modules: [
+      "Parent Profile",
+      "Student Profile",
+      "Academic Performance",
+      "Semester Results",
+      "Course Registration",
+      "Attendance Records",
+      "School Fees",
+      "Payment History",
+      "Academic Progress Reports",
+      "University Announcements",
+      "Academic Calendar",
+      "Contact Lecturers",
+      "Contact the University",
+      "Parent Support"
+    ]
+
+  },
+
+
+  Lecturer: {
+
+    description: "Manage your courses, students, teaching and academic records.",
+
+    stats: [
+      ["Assigned Courses", "4"],
+      ["Students", "120"],
+      ["Classes Today", "2"],
+      ["Pending Results", "0"]
+    ],
+
+    modules: [
+      "Lecturer Profile",
+      "My Courses",
+      "Course Materials",
+      "Student Records",
+      "Class Attendance",
+      "Upload Examination Results",
+      "Upload Continuous Assessment",
+      "Assignments",
+      "Class Timetable",
+      "Examination Timetable",
+      "Academic Calendar",
+      "Student Performance Reports",
+      "Departmental Announcements",
+      "Messages and Notifications"
+    ]
+
+  },
+
+
+  Administrator: {
+
+    description: "Manage university operations, academic records and portal activities.",
+
+    stats: [
+      ["Total Students", "1,250"],
+      ["Lecturers", "85"],
+      ["Departments", "12"],
+      ["Pending Applications", "45"]
+    ],
+
+    modules: [
+      "Administrator Profile",
+      "Student Management",
+      "Parent Management",
+      "Lecturer Management",
+      "Department Management",
+      "Faculty Management",
+      "Course Management",
+      "Admission Management",
+      "Academic Records",
+      "Examination Management",
+      "School Fees Management",
+      "Payment Records",
+      "Announcements and News",
+      "Reports and Analytics",
+      "Portal Settings",
+      "User Account Management"
+    ]
+
+  }
+
+};
+
+
+/* ROLE DESCRIPTIONS */
+
+const moduleDescriptions = {
+
+  "My Profile": "View and manage your personal information and account details.",
+  "Parent Profile": "View your parent account information.",
+  "Lecturer Profile": "View your staff profile and academic information.",
+  "Administrator Profile": "View your administrator account information.",
+  "Student Profile": "View student information and academic details.",
+  "Course Registration": "Manage course registration for the academic session.",
+  "Registered Courses": "View the courses registered for the current semester.",
+  "Academic Results": "View academic results and grade information.",
+  "Semester Results": "View semester examination results and GPA.",
+  "Academic Performance": "Monitor academic performance and achievements.",
+  "Attendance Records": "View attendance records and class participation.",
+  "Class Timetable": "View your weekly lecture timetable.",
+  "School Fees": "View school fee obligations and payment information.",
+  "Payment History": "View previous payments and transaction records.",
+  "Assignments": "View and manage academic assignments.",
+  "Learning Materials": "Access course materials and learning resources.",
+  "Course Materials": "Upload and manage teaching materials.",
+  "My Courses": "View courses assigned to you.",
+  "Student Records": "Access student academic information.",
+  "Class Attendance": "Manage attendance for your classes.",
+  "Upload Examination Results": "Submit examination results for your courses.",
+  "Upload Continuous Assessment": "Manage continuous assessment scores.",
+  "Student Management": "Manage student records and accounts.",
+  "Parent Management": "Manage parent accounts and student relationships.",
+  "Lecturer Management": "Manage lecturer profiles and accounts.",
+  "Department Management": "Manage university departments.",
+  "Faculty Management": "Manage faculties and academic structures.",
+  "Course Management": "Create and manage university courses.",
+  "Admission Management": "Manage admission applications and records.",
+  "Academic Records": "Manage academic records across the university.",
+  "Examination Management": "Manage examination schedules and records.",
+  "School Fees Management": "Manage student fee schedules and obligations.",
+  "Payment Records": "Review university payment records.",
+  "Announcements and News": "Publish important university announcements.",
+  "Reports and Analytics": "Review university reports and statistics.",
+  "Portal Settings": "Manage portal configuration and settings.",
+  "User Account Management": "Manage user accounts and access."
+};
+
+
+/* HOMEPAGE NAVIGATION */
+
+function openLogin() {
+
+  homePage.classList.add("hidden");
+  dashboardPage.classList.add("hidden");
+  loginPage.classList.remove("hidden");
+
+}
+
+document.getElementById("homeLoginButton")
+  .addEventListener("click", openLogin);
+
+document.getElementById("heroLoginButton")
+  .addEventListener("click", openLogin);
+
+document.getElementById("backHomeButton")
+  .addEventListener("click", function() {
+
+    loginPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+
+  });
+
+
+/* LOGIN FUNCTION */
+
+document.getElementById("loginForm")
+  .addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    selectedRole = document.getElementById("roleSelect").value;
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    const errorMessage = document.getElementById("errorMessage");
+    const loginButton = document.getElementById("loginButton");
+
+    errorMessage.textContent = "";
+
+    if (!selectedRole) {
+      errorMessage.textContent = "Please select a portal.";
+      return;
+    }
+
+    loginButton.disabled = true;
+    loginButton.textContent = "Signing in...";
+
+    try {
+
+      const response = await fetch("/api/login", {
+
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify({
+          role: selectedRole,
+          email: email,
+          password: password
+        })
+
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || data.error || "Login failed. Check your details.");
+      }
+
+      currentUser = data.user || data;
+
+      showDashboard(currentUser);
+
+    } catch (error) {
+
+      errorMessage.textContent = error.message ||
+        "Unable to connect to the server. Please try again.";
+
+    } finally {
+
+      loginButton.disabled = false;
+      loginButton.textContent = "Login to Portal";
+
+    }
+
+  });
+
+
+/* OPEN DASHBOARD */
+
+function showDashboard(user) {
+
+  const role = user.role || selectedRole;
+
+  if (!roleDetails[role]) {
+
+    document.getElementById("errorMessage").textContent =
+      "This account has an unrecognised portal role: " + role;
+
+    return;
+
+  }
+
+  selectedRole = role;
+
+  const details = roleDetails[role];
+
+  const name = user.name || user.fullName || user.username || role;
+
+  loginPage.classList.add("hidden");
+  homePage.classList.add("hidden");
+  dashboardPage.classList.remove("hidden");
+
+  document.getElementById("portalRole").textContent =
+    role + " Dashboard";
+
+  document.getElementById("topUserName").textContent =
+    "Welcome, " + name;
+
+  document.getElementById("welcomeHeading").textContent =
+    "Welcome, " + name;
+
+  document.getElementById("welcomeDescription").textContent =
+    details.description;
+
+  renderStats(details.stats);
+  renderModules(details.modules);
+  showOverview();
+
+}
+
+
+/* DISPLAY DASHBOARD STATISTICS */
+
+function renderStats(stats) {
+
+  const statsGrid = document.getElementById("statsGrid");
+
+  statsGrid.innerHTML = "";
+
+  stats.forEach(function(item) {
+
+    const card = document.createElement("div");
+
+    card.className = "stat-card";
+
+    card.innerHTML = `
+      <p>${item[0]}</p>
+      <h2>${item[1]}</h2>
+    `;
+
+    statsGrid.appendChild(card);
+
+  });
+
+}
+
+
+/* DISPLAY SIDEBAR AND QUICK ACCESS */
+
+function renderModules(modules) {
+
+  const sidebarMenu = document.getElementById("sidebarMenu");
+  const quickGrid = document.getElementById("quickGrid");
+
+  sidebarMenu.innerHTML = "";
+  quickGrid.innerHTML = "";
+
+  modules.forEach(function(module, index) {
+
+    const sidebarButton = document.createElement("button");
+
+    sidebarButton.textContent = module;
+
+    sidebarButton.addEventListener("click", function() {
+
+      openModule(module, sidebarButton);
+
+    });
+
+    sidebarMenu.appendChild(sidebarButton);
+
+
+    if (index < 6) {
+
+      const quickCard = document.createElement("button");
+
+      quickCard.className = "quick-card";
+
+      quickCard.innerHTML = `
+        <strong>${module}</strong>
+        <small>${moduleDescriptions[module] ||
+          "Open this section to view and manage information."}</small>
+      `;
+
+      quickCard.addEventListener("click", function() {
+
+        openModule(module, sidebarButton);
+
+      });
+
+      quickGrid.appendChild(quickCard);
+
+    }
+
+  });
+
+}
+
+
+/* DASHBOARD OVERVIEW */
+
+function showOverview() {
+
+  document.getElementById("modulePage").classList.add("hidden");
+
+  document.getElementById("overviewCard").classList.remove("hidden");
+
+  document.querySelectorAll(".sidebar button").forEach(function(button) {
+
+    button.classList.remove("active");
+
+  });
+
+}
+
+
+/* OPEN MODULE */
+
+function openModule(moduleName, activeButton) {
+
+  document.getElementById("overviewCard").classList.add("hidden");
+
+  document.getElementById("modulePage").classList.remove("hidden");
+
+  document.getElementById("moduleTitle").textContent = moduleName;
+
+  document.getElementById("moduleDescription").textContent =
+    moduleDescriptions[moduleName] ||
+    "Manage and review information in this section.";
+
+  const moduleContent = document.getElementById("moduleContent");
+
+  moduleContent.innerHTML = getModuleContent(moduleName);
+
+  document.querySelectorAll(".sidebar button").forEach(function(button) {
+
+    button.classList.remove("active");
+
+  });
+
+  if (activeButton) {
+    activeButton.classList.add("active");
+  }
+
+}
+
+
+/* MODULE PAGE CONTENT */
+
+function getModuleContent(moduleName) {
+
+  const commonTable = `
+    <div class="content-card">
+      <h3>${moduleName}</h3>
+      <p class="module-description">
+        Information for this section will appear here when records
+        are connected to the university database.
+      </p>
+      <div class="notice">
+        This is the portal interface. Actual records and updates
+        require connection to the backend database.
+      </div>
+    </div>
+  `;
+
+
+  if (moduleName === "Academic Results" ||
+      moduleName === "Semester Results" ||
+      moduleName === "Academic Performance") {
+
+    return `
+      <div class="content-card">
+        <h3>Academic Results</h3>
+
+        <div class="notice">
+          Sample academic record for demonstration.
+          Replace this with official university results when connected
+          to the academic records database.
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <tr>
+              <th>Course Code</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+              <th>Score</th>
+              <th>Grade</th>
+            </tr>
+
+            <tr>
+              <td>CSC 201</td>
+              <td>Computer Programming</td>
+              <td>3</td>
+              <td>78</td>
+              <td>A</td>
+            </tr>
+
+            <tr>
+              <td>MTH 201</td>
+              <td>Mathematical Methods</td>
+              <td>3</td>
+              <td>65</td>
+              <td>B</td>
+            </tr>
+
+            <tr>
+              <td>GST 201</td>
+              <td>Communication Skills</td>
+              <td>2</td>
+              <td>72</td>
+              <td>A</td>
+            </tr>
+
+          </table>
+        </div>
+
+        <div class="notice">
+          Sample GPA: 3.75
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Course Registration") {
+
+    return `
+      <div class="content-card">
+
+        <h3>Course Registration</h3>
+
+        <form id="courseForm">
+
+          <div class="form-field">
+            <label>Academic Session</label>
+            <select required>
+              <option value="">Select session</option>
+              <option>2026/2027</option>
+              <option>2025/2026</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>Semester</label>
+            <select required>
+              <option value="">Select semester</option>
+              <option>First Semester</option>
+              <option>Second Semester</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label>Course Code</label>
+            <input type="text" placeholder="Example: CSC 201" required>
+          </div>
+
+          <div class="form-field">
+            <label>Course Title</label>
+            <input type="text" placeholder="Enter course title" required>
+          </div>
+
+          <div class="form-field">
+            <label>Credit Unit</label>
+            <input type="number" min="1" max="6" required>
+          </div>
+
+          <button class="action-btn" type="submit">
+            Add Course
+          </button>
+
+        </form>
+
+        <div id="courseMessage"></div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "School Fees" ||
+      moduleName === "School Fees Management") {
+
+    return `
+      <div class="content-card">
+
+        <h3>School Fees Information</h3>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <p>Tuition Fee</p>
+            <h2>₦450,000</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Amount Paid</p>
+            <h2>₦450,000</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Outstanding Balance</p>
+            <h2>₦0</h2>
+          </div>
+
+        </div>
+
+        <div class="notice">
+          These are sample figures for demonstration only.
+          Official fee information must come from the university
+          payment records.
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Attendance Records" ||
+      moduleName === "Class Attendance") {
+
+    return `
+      <div class="content-card">
+
+        <h3>Attendance Overview</h3>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <p>Classes Attended</p>
+            <h2>23</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Classes Missed</p>
+            <h2>2</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Attendance Rate</p>
+            <h2>92%</h2>
+          </div>
+
+        </div>
+
+        <div class="notice">
+          Sample attendance information. Actual attendance records
+          will be loaded from the university database.
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Assignments") {
+
+    return `
+      <div class="content-card">
+
+        <h3>Assignments</h3>
+
+        <div class="notice">
+          <strong>CSC 201:</strong> Introduction to Programming
+          <p>Submit your programming assignment to your lecturer.</p>
+          <p>Deadline: To be announced</p>
+        </div>
+
+        <div class="notice">
+          <strong>MTH 201:</strong> Mathematical Methods
+          <p>Complete the assigned exercises.</p>
+          <p>Deadline: To be announced</p>
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Announcements and News" ||
+      moduleName === "University Announcements" ||
+      moduleName === "Departmental Announcements") {
+
+    return `
+      <div class="content-card">
+
+        <h3>University Announcements</h3>
+
+        <div class="notice">
+          <strong>Welcome to Wesley University</strong>
+          <p>
+            Students and staff are encouraged to check the portal
+            regularly for academic information.
+          </p>
+        </div>
+
+        <div class="notice">
+          <strong>Academic Activities</strong>
+          <p>
+            Please stay informed about registration, lectures,
+            examinations and other university activities.
+          </p>
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Upload Examination Results" ||
+      moduleName === "Upload Continuous Assessment") {
+
+    return `
+      <div class="content-card">
+
+        <h3>${moduleName}</h3>
+
+        <form id="resultForm">
+
+          <div class="form-field">
+            <label>Course Code</label>
+            <input type="text" placeholder="Enter course code" required>
+          </div>
+
+          <div class="form-field">
+            <label>Student Matriculation Number</label>
+            <input type="text" placeholder="Enter matric number" required>
+          </div>
+
+          <div class="form-field">
+            <label>Score</label>
+            <input type="number" min="0" max="100" required>
+          </div>
+
+          <button class="action-btn" type="submit">
+            Submit Record
+          </button>
+
+        </form>
+
+        <div id="resultMessage"></div>
+
+        <div class="notice">
+          This form is currently a demonstration.
+          It does not yet save examination records to the database.
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Student Management" ||
+      moduleName === "Parent Management" ||
+      moduleName === "Lecturer Management" ||
+      moduleName === "Department Management" ||
+      moduleName === "Faculty Management" ||
+      moduleName === "Course Management" ||
+      moduleName === "Admission Management" ||
+      moduleName === "Academic Records" ||
+      moduleName === "Examination Management" ||
+      moduleName === "Payment Records" ||
+      moduleName === "User Account Management") {
+
+    return `
+      <div class="content-card">
+
+        <h3>${moduleName}</h3>
+
+        <form id="managementForm">
+
+          <div class="form-field">
+            <label>Record Name</label>
+            <input type="text" placeholder="Enter name" required>
+          </div>
+
+          <div class="form-field">
+            <label>Reference Number</label>
+            <input type="text" placeholder="Enter reference number">
+          </div>
+
+          <div class="form-field">
+            <label>Additional Information</label>
+            <textarea rows="4" placeholder="Enter details"></textarea>
+          </div>
+
+          <button class="action-btn" type="submit">
+            Submit Information
+          </button>
+
+        </form>
+
+        <div id="managementMessage"></div>
+
+        <div class="notice">
+          This is the management interface. Database operations,
+          permissions and record management still need to be connected.
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Reports and Analytics" ||
+      moduleName === "Academic Progress Reports" ||
+      moduleName === "Student Performance Reports") {
+
+    return `
+      <div class="content-card">
+
+        <h3>${moduleName}</h3>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <p>Academic Progress</p>
+            <h2>Good</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Performance</p>
+            <h2>75%</h2>
+          </div>
+
+          <div class="stat-card">
+            <p>Records</p>
+            <h2>Available</h2>
+          </div>
+
+        </div>
+
+        <div class="notice">
+          Sample report information. Real reports will be generated
+          from the university database.
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "Portal Settings") {
+
+    return `
+      <div class="content-card">
+
+        <h3>Portal Settings</h3>
+
+        <div class="notice">
+          Manage university portal preferences and administrative settings.
+        </div>
+
+        <div class="form-field">
+          <label>University Name</label>
+          <input value="Wesley University" readonly>
+        </div>
+
+        <div class="form-field">
+          <label>Portal Status</label>
+          <input value="Active" readonly>
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  if (moduleName === "My Courses" ||
+      moduleName === "Registered Courses") {
+
+    return `
+      <div class="content-card">
+
+        <h3>Course Information</h3>
+
+        <div class="table-wrap">
+
+          <table class="data-table">
+
+            <tr>
+              <th>Course Code</th>
+              <th>Course Title</th>
+              <th>Credit Unit</th>
+            </tr>
+
+            <tr>
+              <td>CSC 201</td>
+              <td>Computer Programming</td>
+              <td>3</td>
+            </tr>
+
+            <tr>
+              <td>MTH 201</td>
+              <td>Mathematical Methods</td>
+              <td>3</td>
+            </tr>
+
+            <tr>
+              <td>GST 201</td>
+              <td>Communication Skills</td>
+              <td>2</td>
+            </tr>
+
+          </table>
+
+        </div>
+
+        <div class="notice">
+          Sample course records for demonstration.
+        </div>
+
+      </div>
+    `;
+
+  }
+
+
+  return commonTable;
+
+}
+
+
+/* DEMONSTRATION FORM HANDLERS */
+
+document.addEventListener("submit", function(event) {
+
+  if (event.target.id === "courseForm") {
+
+    event.preventDefault();
+
+    document.getElementById("courseMessage").innerHTML = `
+      <div class="notice">
+        Course information entered. Database registration
+        has not yet been connected.
+      </div>
+    `;
+
+  }
+
+
+  if (event.target.id === "resultForm") {
+
+    event.preventDefault();
+
+    document.getElementById("resultMessage").innerHTML = `
+      <div class="notice">
+        Information received on this page.
+        Result submission to the university database
+        has not yet been connected.
+      </div>
+    `;
+
+  }
+
+
+  if (event.target.id === "managementForm") {
+
+    event.preventDefault();
+
+    document.getElementById("managementMessage").innerHTML = `
+      <div class="notice">
+        Information entered successfully on this page.
+        Saving records to the database has not yet been connected.
+      </div>
+    `;
+
+  }
+
+});
+
+
+/* BACK TO DASHBOARD */
+
+document.getElementById("backDashboard")
+  .addEventListener("click", function() {
+
+    showOverview();
+
+  });
+
+
+/* LOGOUT */
+
+document.getElementById("logoutButton")
+  .addEventListener("click", function() {
+
+    dashboardPage.classList.add("hidden");
+    loginPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+
+    document.getElementById("loginForm").reset();
+
+    document.getElementById("errorMessage").textContent = "";
+
+    selectedRole = "";
+    currentUser = null;
+
+  });
+
+</script>
+
+</body>
+</html>
